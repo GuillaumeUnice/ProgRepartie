@@ -4,13 +4,37 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.lang.reflect.Method;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.LinkedList;
 
 public class Client {
-	//Client Echo
-    public static void main(String[] args) throws IOException {
+	
+	private Person p = new Person();
+	
+	
 
+	Object lancerMethode(Object obj, Object[] args, String nomMethode) throws Exception
+	{
+	   Class[] paramTypes = null;
+	   if(args != null)
+	   {
+	      paramTypes = new Class[args.length];
+	      for(int i=0;i<args.length;++i)
+	      {
+	         paramTypes[i] = args[i].getClass();
+	      }
+	   }
+	   Method m = obj.getClass().getMethod(nomMethode,paramTypes);
+	   return m.invoke(obj,args);
+	}
+	
+	//Client Echo
+    public static void main(String[] args) throws Exception {
+    	Client test = new Client();
+    	
+    	
         String serverHostname = new String ("127.0.0.1");
 
         if (args.length > 0)
@@ -23,8 +47,7 @@ public class Client {
         BufferedReader in = null;
 
         try {
-            // echoSocket = new Socket("taranis", 7);
-            echoSocket = new Socket(serverHostname, 10007);
+            echoSocket = new Socket(serverHostname, 10009);
             out = new PrintWriter(echoSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(
                                         echoSocket.getInputStream()));
@@ -42,9 +65,25 @@ public class Client {
                                    new InputStreamReader(System.in));
     String userInput;
 
-        System.out.print ("input: ");
+    System.out.println(test.p.printFunction());
+    System.out.println("\nVeuillez choisir en inscrivant le nom de fonctionnalité :");
     while ((userInput = stdIn.readLine()) != null) {
-        out.println(userInput);
+        
+    	LinkedList<String> res = (LinkedList<String>) test.lancerMethode(test.p, null, userInput);
+    	System.out.println(res);
+    	String send;
+    	while(!res.isEmpty()) {
+    		out.println(res.pop());
+    	}
+    	
+    	System.out.println("******************************************\n");
+    	/*retour verification
+    	 * String ret = "";
+    	 * while((ret = in.readLine()) != null) {
+    	 * 		System.out.println(ret);
+    	 * }
+    	 */
+    	//out.println(userInput);
         System.out.println("echo: " + in.readLine());
             System.out.print ("input: ");
     }

@@ -15,7 +15,7 @@ public class Server {
 	    ServerSocket serverSocket = null; 
 
 	    try { 
-	         serverSocket = new ServerSocket(10007); 
+	         serverSocket = new ServerSocket(10009); 
 	        } 
 	    catch (IOException e) 
 	        { 
@@ -35,7 +35,8 @@ public class Server {
 	         System.err.println("Accept failed."); 
 	         System.exit(1); 
 	        } 
-
+	    
+	    
 	    System.out.println ("Connection successful");
 	    System.out.println ("Waiting for input.....");
 
@@ -48,7 +49,7 @@ public class Server {
 
 	    while ((inputLine = in.readLine()) != null) 
 	        { 
-	         System.out.println ("Server: " + inputLine); 
+	         System.out.println ("Server: " + inputLine);
 	         out.println(inputLine); 
 
 	         if (inputLine.equals("Bye.")) 
