@@ -81,7 +81,7 @@ public class Person {
 		String separateur = " | ";
 		String res = "Liste des fonctionnalitées : ";
 		for (int i = 0; i < tab.length; i++) {
-			res = tab[i].getName() + separateur;
+			res += tab[i].getName() + separateur;
 		}
 		res = res.substring(0,(res.length()>=1)? res.length()-separateur.length(): 0);
 		
