@@ -1,7 +1,14 @@
 package serveur;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+import exception.NameNotExist;
+import exception.NewNameAlreadyExist;
+import exception.oldNameAreadyExist;
 
 public class Model {
 	
@@ -18,40 +25,55 @@ public class Model {
 		listPer.add(newPer1);
 		listPer.add(newPer2);
 	}
-	private boolean isName(String name) {
-		for (Personne p : listPer) {
-			if(p.getName() == name) {
-				return true;
-			}
-		}
-		return false;
+	/*public List<String> listNameByAlph() throws NameNotExist{
+		Collections.sort(listPer);
+	}*/
+	
+	public List<String> listByName(String name) throws NameNotExist{
+		if(alreadyExist(name)) throw new NameNotExist();
+		Personne Per = new Personne(name);
+		int rang = listPer.indexOf(Per);
+		LinkedList<String> list = new LinkedList<String>(listPer.get(rang).getListNickName());
+		
+		return app.application(list);
 	}
-	public boolean addName(String name) {
-		if(!this.isName(name)) return false;
-		Personne newPer = new Personne(name,null);
+	
+	public List<String> addName(String name) throws NewNameAlreadyExist {
+		
+		if(alreadyExist(name)) throw new NewNameAlreadyExist();
+		
+		Personne newPer = new Personne(name);
 		listPer.add(newPer);
-		return true;
+		return app.appValid();
 		
 	}
 	
-	public boolean updateName(String oldName, String newName) {
-		//if(!this.isName(oldName)) return false;
-		//if(this.isName(newName)) return false;
+	public  List<String> updateName(String oldName, String newName) throws oldNameAreadyExist, NewNameAlreadyExist {
 		
-		Personne test = new Personne("Julien", null);
-		System.out.println("sfs");
+		if(alreadyExist(oldName)) {
+			if(!alreadyExist(newName)) {
+				Personne oldPer = new Personne(oldName);
+				int rang = listPer.indexOf(oldPer);
+				listPer.get(rang).setName(newName);
+				
+				return app.appValid();
+			} else {
+				throw new oldNameAreadyExist();
+			}
+		} else {
+			throw new NewNameAlreadyExist();
+		}
+			
 		
-		HashSet<Personne> hashList = new HashSet<Personne>();
-		//hashList.
-		if(listPer.contains("Julien"))
-			System.out.println("Ca marche");
-		else System.out.println("Ca ne marche pas!!");
-		
-	//	listPer.contains(new Personne());
-		//Personne newPer = new Personne(name,null);
-		//listPer.add(newPer);
-		return true;
 	}
+	
+	public boolean alreadyExist(String name) {
+		Personne Per = new Personne(name);
+		return listPer.contains(Per);
+		
+	}
+	
+	
 	
 	
 }

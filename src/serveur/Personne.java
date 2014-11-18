@@ -11,15 +11,19 @@ public class Personne {
 		this.name = name;
 		this.listNickName = listNickName;
 	}
+	public Personne(String name) {
+		this.name = name;
+		this.listNickName = new ArrayList<String>();
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	@Override
 	public boolean equals(Object obj) {
 		Personne that = (Personne) obj;
 		return this.name.equals(that.name);
 	}
-	public boolean equals(String str) {
-		System.out.println("plop");
-		return this.name.equals(str);
-	}
+	
 	public String getName() {
 		return name;
 	}

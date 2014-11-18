@@ -6,21 +6,42 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 
 public class Application {
+	
+
 	/**
 	   * Mise en place du protocole
 	   * @param res
 	   * @return
 	   */
-	  public static LinkedList<String>application(boolean res, String msg) {
+	  public static LinkedList<String>appError(String msg) {
 		  LinkedList<String> ret = new LinkedList<String>();
-		  if(res) ret.add("OK");
-		  else ret.add("NO");
 		  
+		 ret.add("NO"); 
 		  ret.add(msg);
 		  ret.add(null);
 		  return ret;
-	  }
+	 }
 	  
+	  public static LinkedList<String>appValid() {
+		  LinkedList<String> ret = new LinkedList<String>();
+		 ret.add("OK"); 
+		  ret.add("Operation effectuee");
+		  ret.add(null);
+		  return ret;
+	  }
+	  public static LinkedList<String>application(LinkedList<String> list) {
+		  LinkedList<String> ret = new LinkedList<String>();
+			  ret.addAll(list);
+			  ret.add(null);
+			  return ret;
+	  }
+	  public static LinkedList<String>application(String msg) {
+		  LinkedList<String> ret = new LinkedList<String>();
+		 
+			  ret.add(msg);
+			  ret.add(null);
+			  return ret;
+	  }
 		/**
 	   * 
 	   * @return Recupère l'entrée dans un String
