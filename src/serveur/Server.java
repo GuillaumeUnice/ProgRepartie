@@ -10,11 +10,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
+
 	public static void main(String[] args) throws IOException {
 		ServerSocket serverSocket = null;
 
 		try {
-			serverSocket = new ServerSocket(10007);
+			serverSocket = new ServerSocket(10009);
 		} catch (IOException e) {
 			System.err.println("Could not listen on port: 10007.");
 			System.exit(1);
