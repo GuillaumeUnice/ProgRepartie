@@ -34,6 +34,13 @@ public class Person {
 			return a.application(res);
 	  }
 	  
+	  public LinkedList<String> test() throws IOException {
+		  	LinkedList<String> res = new LinkedList<String>();
+		  	res.add(this.getMethodeName());
+		  	res.add("Julien");
+			return a.application(res);
+	  }
+	  
 	  public LinkedList<String> listNickNameByAlph() {
 		  LinkedList<String> res = new LinkedList<String>();
 		  res.add(this.getMethodeName());

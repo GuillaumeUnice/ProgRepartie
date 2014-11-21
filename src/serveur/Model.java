@@ -29,8 +29,8 @@ public class Model {
 		Collections.sort(listPer);
 	}*/
 	
-	public List<String> listByName(String name) throws NameNotExist{
-		if(alreadyExist(name)) throw new NameNotExist();
+	public LinkedList<String> listNickNameByName(String name) throws NameNotExist{
+		if(!alreadyExist(name)) throw new NameNotExist();
 		Personne Per = new Personne(name);
 		int rang = listPer.indexOf(Per);
 		LinkedList<String> list = new LinkedList<String>(listPer.get(rang).getListNickName());
@@ -69,6 +69,8 @@ public class Model {
 	
 	public boolean alreadyExist(String name) {
 		Personne Per = new Personne(name);
+		if(listPer.contains(Per)) System.out.println("OK");
+		else System.out.println("NO");
 		return listPer.contains(Per);
 		
 	}

@@ -67,27 +67,23 @@ public class Client {
 
     System.out.println(test.p.printFunction());
     System.out.println("\nVeuillez choisir en inscrivant le nom de fonctionnalité :");
-    while ((userInput = stdIn.readLine()) != null) {
-        
+    String inputLine = "";
+    while (!(userInput = stdIn.readLine()).equals("END")) {
     	LinkedList<String> res = (LinkedList<String>) test.lancerMethode(test.p, null, userInput);
+    	res.add("END");
     	System.out.println(res);
-    	String send;
     	while(!res.isEmpty()) {
     		out.println(res.pop());
     	}
     	
-    	System.out.println("******************************************\n");
-    	/*retour verification
-    	 * String ret = "";
-    	 * while((ret = in.readLine()) != null) {
-    	 * 		System.out.println(ret);
-    	 * }
-    	 */
-    	//out.println(userInput);
-        System.out.println("echo: " + in.readLine());
-            System.out.print ("input: ");
+    	//System.out.println(in.toString());
+	    //System.out.println("echo: " + in.readLine());
+		while (!(inputLine = in.readLine()).equals("END")) {
+			System.out.println(inputLine);
+		
+		}
     }
-
+    out.println("END");
     out.close();
     in.close();
     stdIn.close();
