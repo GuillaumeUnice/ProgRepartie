@@ -1,8 +1,9 @@
 package serveur;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public class Personne {
+public class Personne implements Comparable<Personne>{
 	
 	private String name;
 	private ArrayList<String> listNickName;
@@ -23,7 +24,14 @@ public class Personne {
 		Personne that = (Personne) obj;
 		return this.name.equals(that.name);
 	}
-	
+
+
+	 @Override
+     public int compareTo(Personne  per)
+     {
+		
+		 return this.getName().compareTo(per.getName());
+     }
 	public String getName() {
 		return name;
 	}

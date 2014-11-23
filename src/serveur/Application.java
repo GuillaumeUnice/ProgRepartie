@@ -7,7 +7,8 @@ import java.util.LinkedList;
 
 public class Application {
 	
-
+	public static final String END_APP = "END";
+	
 	/**
 	   * Mise en place du protocole
 	   * @param res
@@ -18,28 +19,28 @@ public class Application {
 		  
 		 ret.add("NO"); 
 		  ret.add(msg);
-		  ret.add(null);
+		  ret.add(Application.END_APP);
 		  return ret;
 	 }
 	  
 	  public static LinkedList<String>appValid() {
 		  LinkedList<String> ret = new LinkedList<String>();
 		 ret.add("OK"); 
-		  ret.add("Operation effectuee");
-		  ret.add(null);
+		  ret.add("Operation effectuée");
+		  ret.add(Application.END_APP);
 		  return ret;
 	  }
 	  public static LinkedList<String>application(LinkedList<String> list) {
 		  LinkedList<String> ret = new LinkedList<String>();
 			  ret.addAll(list);
-			  ret.add(null);
+			  ret.add(Application.END_APP);
 			  return ret;
 	  }
 	  public static LinkedList<String>application(String msg) {
 		  LinkedList<String> ret = new LinkedList<String>();
 		 
 			  ret.add(msg);
-			  ret.add(null);
+			  ret.add(Application.END_APP);
 			  return ret;
 	  }
 		/**

@@ -7,6 +7,7 @@ import java.util.LinkedList;
 
 public class Application {
 	  
+	public static final String END_APP = "END";
 	/**
 	   * 
 	   * @return Recupère l'entrée dans un String
@@ -25,7 +26,7 @@ public class Application {
 	   * @return
 	   */
 	  public static LinkedList<String>application(LinkedList<String> res) {
-		  res.add(null);
+		  res.add(Application.END_APP);
 		  return res;
 	  }
 	  

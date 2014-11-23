@@ -15,7 +15,10 @@ public class Model {
 	private ArrayList<Personne> listPer = new ArrayList<Personne>();
 	private Application app = new Application();
 	
-	public Model() {
+	/*
+	 * Permet une initialisation de base du model
+	 */
+	void initialise() {
 		Personne newPer1 = new Personne("Paul",new ArrayList<String>());
 		ArrayList<String> nickName2 = new ArrayList<String>();
 		nickName2.add("nickName1");
@@ -25,10 +28,23 @@ public class Model {
 		listPer.add(newPer1);
 		listPer.add(newPer2);
 	}
-	/*public List<String> listNameByAlph() throws NameNotExist{
-		Collections.sort(listPer);
-	}*/
 	
+	public List<String> listNameByAlph() throws NameNotExist{
+		Collections.sort(listPer);
+		LinkedList<String> list = new LinkedList<String>(); 
+		for (Personne per : listPer) {
+			list.add(per.getName());
+		}
+		return app.application(list);
+	}
+	public LinkedList<String> test(String name) throws NameNotExist{
+		if(!alreadyExist(name)) throw new NameNotExist();
+		Personne Per = new Personne(name);
+		int rang = listPer.indexOf(Per);
+		LinkedList<String> list = new LinkedList<String>(listPer.get(rang).getListNickName());
+		
+		return app.application(list);
+	}
 	public LinkedList<String> listNickNameByName(String name) throws NameNotExist{
 		if(!alreadyExist(name)) throw new NameNotExist();
 		Personne Per = new Personne(name);

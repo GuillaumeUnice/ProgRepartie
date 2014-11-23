@@ -86,9 +86,13 @@ public class Person {
 	public String printFunction() {
 		Method[] tab = this.getClass().getDeclaredMethods() ;
 		String separateur = " | ";
-		String res = "Liste des fonctionnalitées : ";
+		String res = "--------------------------------------\n";
+			  res += "------Liste des fonctionnalitées------\n";
+			  res += "--------------------------------------\n";
 		for (int i = 0; i < tab.length; i++) {
-			res += tab[i].getName() + separateur;
+			if(!(tab[i].getName().equals(this.getMethodeName()) 
+					&& !(tab[i].getName().equals("getMethodeName"))))		
+				res += tab[i].getName() + separateur;
 		}
 		res = res.substring(0,(res.length()>=1)? res.length()-separateur.length(): 0);
 		
