@@ -8,7 +8,7 @@ import java.util.List;
 
 import exception.NameNotExist;
 import exception.NewNameAlreadyExist;
-import exception.oldNameAreadyExist;
+import exception.OldNameAlreadyExist;
 
 public class Model {
 	
@@ -64,7 +64,7 @@ public class Model {
 		
 	}
 	
-	public  List<String> updateName(String oldName, String newName) throws oldNameAreadyExist, NewNameAlreadyExist {
+	public  List<String> updateName(String oldName, String newName) throws OldNameAlreadyExist, NewNameAlreadyExist {
 		
 		if(alreadyExist(oldName)) {
 			if(!alreadyExist(newName)) {
@@ -74,7 +74,7 @@ public class Model {
 				
 				return app.appValid();
 			} else {
-				throw new oldNameAreadyExist();
+				throw new OldNameAlreadyExist();
 			}
 		} else {
 			throw new NewNameAlreadyExist();

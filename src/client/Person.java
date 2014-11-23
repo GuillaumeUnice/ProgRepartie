@@ -15,7 +15,7 @@ public class Person {
 	   *
 	   * @return Renvoie le nom de la fonction que l'on est en train d'executer
 	   */
-	  public static String getMethodeName()
+	  private static String getMethodeName()
 	  {
 	          Throwable t = new Throwable();
 	          t.fillInStackTrace();
@@ -37,7 +37,7 @@ public class Person {
 	  public LinkedList<String> test() throws IOException {
 		  	LinkedList<String> res = new LinkedList<String>();
 		  	res.add(this.getMethodeName());
-		  	res.add("Julien");
+		  	res.add("Julie");
 			return a.application(res);
 	  }
 	  
@@ -90,9 +90,9 @@ public class Person {
 			  res += "------Liste des fonctionnalitées------\n";
 			  res += "--------------------------------------\n";
 		for (int i = 0; i < tab.length; i++) {
-			if(!(tab[i].getName().equals(this.getMethodeName()) 
-					&& !(tab[i].getName().equals("getMethodeName"))))		
-				res += tab[i].getName() + separateur;
+			if(!(tab[i].getName().equals(this.getMethodeName()))) 
+				 if(!(tab[i].getName().equals("getMethodeName")))		
+					 res += tab[i].getName() + separateur;
 		}
 		res = res.substring(0,(res.length()>=1)? res.length()-separateur.length(): 0);
 		

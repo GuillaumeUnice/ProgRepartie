@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -16,7 +17,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import client.Application;
+import exception.NameNotExist;
+import exception.NewNameAlreadyExist;
+import exception.OldNameAlreadyExist;
 
 public class Server {
 	
@@ -80,7 +83,7 @@ public class Server {
 	   return m.invoke(obj,args);
 	}
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Throwable {
 		ServerSocket serverSocket = null;
 		int port = 10009;
 		try {
@@ -97,6 +100,7 @@ public class Server {
 
 			clientSocket = serverSocket.accept();
 		} catch (IOException e) {
+			
 			System.err.println("Acceptation du client à echoué.");
 			System.exit(1);
 		}
@@ -122,8 +126,14 @@ public class Server {
 			
 			System.out.println("fin du reçu");
 			
-			
-			res = (LinkedList<String>) server.lancerMethode(server.getModel(), res, res.pop());
+			try {
+				res = (LinkedList<String>) server.lancerMethode(server.getModel(), res, res.pop());
+			} catch (InvocationTargetException e) { 
+				  try { throw e.getCause(); }
+				  catch(NameNotExist err) { res = Application.appError(err.msg()); }
+				  catch(NewNameAlreadyExist err) { res = Application.appError(err.msg()); }
+				  catch(OldNameAlreadyExist err) { res = Application.appError(err.msg()); }
+			}
 			
 			//LinkedList<String> ret = server.model.listNickNameByName("Julien");
 			

@@ -91,16 +91,25 @@ public class Client {
 	    
 	    while (!(userInput = stdIn.readLine()).equals(Application.END_APP)) {
 	
-	    	LinkedList<String> reqClient = (LinkedList<String>) test.lancerMethode(test.p, null, userInput);
+	    	try {
+	    		
+	    		LinkedList<String> reqClient = new LinkedList<String>();
+	    	
+	    		reqClient = (LinkedList<String>) test.lancerMethode(test.p, null, userInput);
 	
-	    	test.sendReq(reqClient, out);
-	    	
-	    	test.receiveReq(in);
-	    	
-	    	test.choiceFunc();
+		    	test.sendReq(reqClient, out);
+		    	test.receiveReq(in);
+		    	
+		    	test.choiceFunc();
+		    	
+	    	} catch (NoSuchMethodException e) {
+	    		System.out.println("Cette fonctionnalité n'existe pas : " + e.getMessage());
+	    		test.choiceFunc();
+	    	}
 	    }
 	    
 	    out.println(Application.END_APP);
+	    System.out.println("Session est close");
 	    out.close();
 	    in.close();
 	    stdIn.close();
