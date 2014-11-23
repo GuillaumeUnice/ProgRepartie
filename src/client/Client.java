@@ -105,6 +105,9 @@ public class Client {
 	    	} catch (NoSuchMethodException e) {
 	    		System.out.println("Cette fonctionnalité n'existe pas : " + e.getMessage());
 	    		test.choiceFunc();
+	    	} catch (IOException e) {
+	    		System.out.println("Erreur de lecture d'entrée : " + e.getMessage());
+	    		test.choiceFunc();
 	    	}
 	    }
 	    

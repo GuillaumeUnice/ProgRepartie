@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import exception.ApplicationException;
 import exception.NameNotExist;
 import exception.NewNameAlreadyExist;
 import exception.OldNameAlreadyExist;
@@ -130,9 +131,8 @@ public class Server {
 				res = (LinkedList<String>) server.lancerMethode(server.getModel(), res, res.pop());
 			} catch (InvocationTargetException e) { 
 				  try { throw e.getCause(); }
-				  catch(NameNotExist err) { res = Application.appError(err.msg()); }
-				  catch(NewNameAlreadyExist err) { res = Application.appError(err.msg()); }
-				  catch(OldNameAlreadyExist err) { res = Application.appError(err.msg()); }
+				  catch(ApplicationException err) { res = Application.appError(err.msg()); }
+				  
 			}
 			
 			//LinkedList<String> ret = server.model.listNickNameByName("Julien");
