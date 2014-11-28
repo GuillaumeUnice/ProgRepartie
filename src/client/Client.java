@@ -89,7 +89,7 @@ public class Client {
 	
 	    test.choiceFunc();
 	    
-	    while (!(userInput = stdIn.readLine()).equals(Application.END_APP)) {
+	    while (!(userInput = stdIn.readLine()).equals("quit")) {
 	
 	    	try {
 	    		

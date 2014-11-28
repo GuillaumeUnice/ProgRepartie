@@ -87,8 +87,6 @@ public class Person {
 	
 	public List<String>quit() throws IOException {
 		LinkedList<String> res = new LinkedList<String>();
-		res.add(this.getMethodeName());
-		res.add(a.lireClavier());	
 		return a.application(res);
 	}
 	
